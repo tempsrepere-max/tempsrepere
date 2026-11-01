@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Confidentialité TempsRepère</title>
+<meta name="description" content="Politique de confidentialité de l’application TempsRepère.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root{
+ /* Plan : bleu nuit de la marque, turquoise pour l'action, menthe en touche. Grille asymétrique, texte à gauche, téléphone à droite. */
+ --bg:#F5F9F9;--surface:#FFFFFF;--fg:#102D3B;--mu:#4C6672;--line:#C9DCDA;--accent:#007C80;--accent-fg:#FFFFFF;--mint:#8AF0C0;--navy:#051D2D;--hero-bg:#051D2D;--hero-fg:#F2F8F8;--hero-mu:#B8CBD2;--chip:#E6F5F0;
+ --f-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--f-body:'Figtree','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#09121A;--surface:#112028;--fg:#E6F0F2;--mu:#A9BEC6;--line:#2C4753;--accent:#35E0D2;--accent-fg:#00363A;--chip:#173A3A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#09121A;--surface:#112028;--fg:#E6F0F2;--mu:#A9BEC6;--line:#2C4753;--accent:#35E0D2;--accent-fg:#00363A;--chip:#173A3A;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6;padding-block:0}
+.wrap{max-width:1112px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;font-family:var(--f-display);font-weight:800;font-size:23px;letter-spacing:-.02em}
+.brand img{width:40px;height:40px;border-radius:11px}
+.brand em{font-style:normal;color:var(--accent)}
+nav{display:flex;gap:22px;font-weight:600;font-size:15.5px}
+nav a{color:var(--fg);text-decoration:none}
+nav a:hover{color:var(--accent)}
+.hero{background:var(--hero-bg);color:var(--hero-fg);padding:56px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(38px,6.2vw,72px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero p{color:var(--hero-mu);font-size:19px;max-width:34em;margin:22px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:28px 0 56px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--mint);color:#04261F;font-weight:700;font-size:17px;padding:14px 22px;border-radius:14px;text-decoration:none;border:0}
+.btn.soon{cursor:default}
+.tag{font-size:15px;color:var(--hero-mu)}
+.hero .shot{display:flex;justify-content:center}
+.hero .shot img{width:min(100%,360px);height:auto;display:block;border-radius:40px 40px 0 0;margin-bottom:-4px}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--line)}
+.strip div{padding:26px 18px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font-family:var(--f-display);font-size:clamp(34px,5vw,52px);font-weight:800;color:var(--accent);line-height:1}
+.strip span{color:var(--mu);font-size:15.5px}
+section{padding:64px 0 0}
+h2{font-size:clamp(28px,4vw,42px);font-weight:800;max-width:18em}
+.lead{color:var(--mu);max-width:36em;margin:14px 0 0}
+.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:34px}
+.feat article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}
+.feat h3{font-size:22px;font-weight:700;margin-bottom:8px}
+.feat p{margin:0;color:var(--mu);font-size:16.5px}
+.gallery{display:flex;gap:18px;overflow-x:auto;padding:30px 0 6px;scroll-snap-type:x mandatory}
+.gallery figure{margin:0;flex:0 0 min(78%,300px);scroll-snap-align:start}
+.gallery img{width:100%;height:auto;border-radius:26px;display:block;border:1px solid var(--line)}
+.gallery figcaption{font-size:15px;color:var(--mu);padding:10px 4px 0}
+.note{font-size:14.5px;color:var(--mu);margin-top:6px}
+.faq{margin-top:28px;display:grid;gap:0;border-top:1px solid var(--line);max-width:760px}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style-position:outside}
+.faq p{margin:10px 0 0;color:var(--mu)}
+footer{margin-top:72px;padding:34px 0 40px;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer p{margin:10px 0 0;max-width:46em}
+.doc{max-width:760px;margin:0 auto;padding:30px 0 0}
+.doc h1{font-size:clamp(32px,5vw,50px);font-weight:800}
+.doc h2{font-size:24px;margin:36px 0 8px;max-width:none}
+.doc p,.doc li{color:var(--fg)}
+.doc ul{padding-left:1.2em;margin:8px 0}
+.doc .meta{color:var(--mu);margin-top:10px}
+.todo{background:var(--chip);border:1px dashed var(--accent);border-radius:8px;padding:2px 8px;font-weight:600}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+@media (max-width:760px){
+ .hero .wrap{grid-template-columns:1fr}
+ .hero .shot{order:2}
+ .cta{margin-bottom:34px}
+ .strip{grid-template-columns:1fr}
+ .strip div{border-right:0;border-bottom:1px solid var(--line)}
+ .strip div:last-child{border-bottom:0}
+ .feat{grid-template-columns:1fr}
+ nav{gap:16px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body><div class="wrap top"><a class="brand" href="index.html"><img src="icone.png" alt="" width="40" height="40"><span>Temps<em>Repère</em></span></a>
+<nav><a href="index.html#fonctions">Fonctions</a><a href="index.html#questions">Questions</a><a href="confidentialite.html">Confidentialité</a></nav></div><div class="wrap"><main class="doc">
+<h1>Politique de confidentialité</h1>
+<p class="meta">Application TempsRepère (<code>fr.tempsrepere.app</code>) · mise à jour le 30 octobre 2026</p>
+<p>En deux phrases : TempsRepère ne collecte aucune donnée vous concernant. Tout ce que vous saisissez reste sur votre téléphone.</p>
+
+<h2>Qui édite l'application</h2>
+<p>Éditeur : Gatounet<br>Contact : <a href="mailto:tempsrepere@gmail.com">tempsrepere@gmail.com</a></p>
+
+<h2>Ce que vous saisissez</h2>
+<p>Selon ce que vous choisissez de renseigner : vos horaires de travail, vos pauses, vos repas (et leur lieu, facultatif), vos notes, vos jours de congé et de repos, ainsi que les réglages de votre profil (nom affiché, durée de contrat, seuils).</p>
+
+<h2>Où sont ces données</h2>
+<p>Elles sont enregistrées uniquement dans la mémoire de l'application, sur votre téléphone. L'application n'a pas de compte utilisateur, n'envoie rien à un serveur et ne partage aucune donnée avec des tiers.</p>
+
+<h2>Ce que l'application ne fait pas</h2>
+<ul><li>Aucune publicité, aucun traceur publicitaire.</li><li>Aucun outil de mesure d'audience intégré à l'application.</li><li>Aucune demande d'accès à vos contacts, votre position, votre appareil photo ou votre micro.</li></ul>
+
+<h2>Sauvegarde et partage</h2>
+<p>Vous pouvez créer une sauvegarde ou un rapport PDF depuis l'application. Ces fichiers sont créés sur votre demande et enregistrés à l'endroit que vous choisissez. Leur conservation et leur partage dépendent de vous : l'éditeur n'y a pas accès.</p>
+
+<h2>Google Play</h2>
+<p>Le téléchargement passe par Google Play. Google peut collecter ses propres statistiques sur l'installation et le fonctionnement de l'application (par exemple des rapports d'incident anonymisés), selon sa propre politique de confidentialité.</p>
+
+<h2>Supprimer vos données</h2>
+<p>Vous pouvez supprimer vos journées dans l'application, effacer les données de l'application dans les réglages d'Android, ou désinstaller l'application : l'ensemble de vos données est alors supprimé de votre téléphone. Les fichiers de sauvegarde ou PDF que vous avez créés restent à supprimer vous-même.</p>
+
+<h2>Vos droits</h2>
+<p>L'éditeur ne détenant aucune de vos données, il n'y a rien à lui demander de consulter, de corriger ou d'effacer. Pour toute question, écrivez à l'adresse de contact ci-dessus.</p>
+
+<h2>Enfants</h2>
+<p>L'application n'est pas destinée aux enfants.</p>
+
+<h2>Avertissement</h2>
+<p>TempsRepère est un outil d'aide au suivi de vos horaires. Il ne remplace ni votre employeur ni un avis juridique.</p>
+
+<h2>Modifications</h2>
+<p>Si cette politique change, la date de mise à jour ci-dessus change aussi.</p>
+</main></div><footer><div class="wrap"><div class="row"><div><b style="color:var(--fg)">TempsRepère</b> · Vos horaires. Vos repos. Vos repères.</div><div><a href="confidentialite.html">Politique de confidentialité</a></div></div>
+<p>TempsRepère est un outil d'aide au suivi de vos horaires. Il ne remplace ni votre employeur ni un avis juridique.</p></div></footer></body></html>

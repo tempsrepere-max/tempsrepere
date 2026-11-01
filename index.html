@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>TempsRepère</title>
+<meta name="description" content="TempsRepère : notez votre journée en 30 secondes, suivez vos pauses, vos repos et vos heures supplémentaires. Gratuit, sans compte.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700&display=swap">
+<style>
+:root{
+ /* Plan : bleu nuit de la marque, turquoise pour l'action, menthe en touche. Grille asymétrique, texte à gauche, téléphone à droite. */
+ --bg:#F5F9F9;--surface:#FFFFFF;--fg:#102D3B;--mu:#4C6672;--line:#C9DCDA;--accent:#007C80;--accent-fg:#FFFFFF;--mint:#8AF0C0;--navy:#051D2D;--hero-bg:#051D2D;--hero-fg:#F2F8F8;--hero-mu:#B8CBD2;--chip:#E6F5F0;
+ --f-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--f-body:'Figtree','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#09121A;--surface:#112028;--fg:#E6F0F2;--mu:#A9BEC6;--line:#2C4753;--accent:#35E0D2;--accent-fg:#00363A;--chip:#173A3A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#09121A;--surface:#112028;--fg:#E6F0F2;--mu:#A9BEC6;--line:#2C4753;--accent:#35E0D2;--accent-fg:#00363A;--chip:#173A3A;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6;padding-block:0}
+.wrap{max-width:1112px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;font-family:var(--f-display);font-weight:800;font-size:23px;letter-spacing:-.02em}
+.brand img{width:40px;height:40px;border-radius:11px}
+.brand em{font-style:normal;color:var(--accent)}
+nav{display:flex;gap:22px;font-weight:600;font-size:15.5px}
+nav a{color:var(--fg);text-decoration:none}
+nav a:hover{color:var(--accent)}
+.hero{background:var(--hero-bg);color:var(--hero-fg);padding:56px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(38px,6.2vw,72px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero p{color:var(--hero-mu);font-size:19px;max-width:34em;margin:22px 0 0}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:28px 0 56px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--mint);color:#04261F;font-weight:700;font-size:17px;padding:14px 22px;border-radius:14px;text-decoration:none;border:0}
+.btn.soon{cursor:default}
+.tag{font-size:15px;color:var(--hero-mu)}
+.hero .shot{display:flex;justify-content:center}
+.hero .shot img{width:min(100%,360px);height:auto;display:block;border-radius:40px 40px 0 0;margin-bottom:-4px}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid var(--line)}
+.strip div{padding:26px 18px;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font-family:var(--f-display);font-size:clamp(34px,5vw,52px);font-weight:800;color:var(--accent);line-height:1}
+.strip span{color:var(--mu);font-size:15.5px}
+section{padding:64px 0 0}
+h2{font-size:clamp(28px,4vw,42px);font-weight:800;max-width:18em}
+.lead{color:var(--mu);max-width:36em;margin:14px 0 0}
+.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:34px}
+.feat article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;min-width:0}
+.feat h3{font-size:22px;font-weight:700;margin-bottom:8px}
+.feat p{margin:0;color:var(--mu);font-size:16.5px}
+.gallery{display:flex;gap:18px;overflow-x:auto;padding:30px 0 6px;scroll-snap-type:x mandatory}
+.gallery figure{margin:0;flex:0 0 min(78%,300px);scroll-snap-align:start}
+.gallery img{width:100%;height:auto;border-radius:26px;display:block;border:1px solid var(--line)}
+.gallery figcaption{font-size:15px;color:var(--mu);padding:10px 4px 0}
+.note{font-size:14.5px;color:var(--mu);margin-top:6px}
+.faq{margin-top:28px;display:grid;gap:0;border-top:1px solid var(--line);max-width:760px}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;list-style-position:outside}
+.faq p{margin:10px 0 0;color:var(--mu)}
+footer{margin-top:72px;padding:34px 0 40px;border-top:1px solid var(--line);color:var(--mu);font-size:15px}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer p{margin:10px 0 0;max-width:46em}
+.doc{max-width:760px;margin:0 auto;padding:30px 0 0}
+.doc h1{font-size:clamp(32px,5vw,50px);font-weight:800}
+.doc h2{font-size:24px;margin:36px 0 8px;max-width:none}
+.doc p,.doc li{color:var(--fg)}
+.doc ul{padding-left:1.2em;margin:8px 0}
+.doc .meta{color:var(--mu);margin-top:10px}
+.todo{background:var(--chip);border:1px dashed var(--accent);border-radius:8px;padding:2px 8px;font-weight:600}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+@media (max-width:760px){
+ .hero .wrap{grid-template-columns:1fr}
+ .hero .shot{order:2}
+ .cta{margin-bottom:34px}
+ .strip{grid-template-columns:1fr}
+ .strip div{border-right:0;border-bottom:1px solid var(--line)}
+ .strip div:last-child{border-bottom:0}
+ .feat{grid-template-columns:1fr}
+ nav{gap:16px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body><div class="wrap top"><a class="brand" href="index.html"><img src="icone.png" alt="" width="40" height="40"><span>Temps<em>Repère</em></span></a>
+<nav><a href="index.html#fonctions">Fonctions</a><a href="index.html#questions">Questions</a><a href="confidentialite.html">Confidentialité</a></nav></div>
+<header class="hero"><div class="wrap"><div>
+<h1>Vos horaires.<br>Vos repos.<br><em>Vos repères.</em></h1>
+<p>TempsRepère est l'application gratuite pour noter votre journée en 30 secondes et suivre vos pauses, vos repos et vos heures supplémentaires.</p>
+<div class="cta"><span class="btn soon" aria-disabled="true">Bientôt sur Google Play</span><span class="tag">Android · gratuit · sans compte · sans publicité</span></div>
+</div><div class="shot"><img src="saisie.jpg" alt="Écran de saisie de la journée : début, fin, pause et aperçu des heures travaillées" width="520" height="1067"></div></div></header>
+<div class="wrap"><div class="strip"><div><b>30 s</b><span>pour noter une journée</span></div><div><b>0</b><span>compte à créer</span></div><div><b>0</b><span>publicité</span></div></div>
+
+<section id="fonctions"><h2>Ce que fait TempsRepère</h2><p class="lead">L'application s'ouvre directement sur la saisie du jour. Le reste est à un toucher.</p>
+<div class="feat">
+<article><h3>Votre journée, en un coup d'œil</h3><p>Début, fin, pause, repas, note. Plusieurs créneaux dans la même journée, fin le lendemain pour le travail de nuit, journée de repos ou jour de congé.</p></article>
+<article><h3>Un bilan qui suit votre contrat</h3><p>Indiquez votre durée hebdomadaire (35 h, 39 h ou autre) : le bilan calcule vos heures supplémentaires semaine par semaine, avec le total, les pauses et les congés.</p></article>
+<article><h3>Vos repos sous les yeux</h3><p>Repos entre deux journées et repos de la semaine, avec des seuils que vous réglez vous-même dans votre profil.</p></article>
+<article><h3>Calendrier, analyse et PDF</h3><p>Un mois en couleurs, le détail de vos 7 jours, l'historique par mois et un rapport PDF à garder ou à partager.</p></article>
+<article><h3>Vos données restent chez vous</h3><p>Pas de compte, pas de serveur : tout est enregistré sur votre téléphone, avec une sauvegarde en fichier que vous gardez où vous voulez.</p></article>
+<article><h3>Clair ou sombre</h3><p>L'application suit le réglage de votre téléphone, ou vous choisissez Clair ou Sombre dans les réglages.</p></article>
+</div></section>
+
+<section><h2>L'application en images</h2><p class="lead">Aperçus avec des données fictives.</p>
+<div class="gallery" tabindex="0" aria-label="Aperçus de l'application">
+<figure><img src="bilan.jpg" alt="Bilan de la semaine avec total des heures, heures supplémentaires et pause" width="520" height="1067" loading="lazy"><figcaption>Le bilan de la semaine</figcaption></figure>
+<figure><img src="contrat.jpg" alt="Profil : temps de travail par semaine de 35 heures" width="520" height="1067" loading="lazy"><figcaption>Votre contrat hebdomadaire</figcaption></figure>
+<figure><img src="calendrier.jpg" alt="Calendrier du mois avec les journées saisies en couleurs" width="520" height="1067" loading="lazy"><figcaption>Le mois en couleurs</figcaption></figure>
+<figure><img src="repos.jpg" alt="Analyse des repos entre deux journées" width="520" height="1067" loading="lazy"><figcaption>Vos repos</figcaption></figure>
+<figure><img src="sombre.jpg" alt="Saisie de la journée en mode sombre" width="520" height="1067" loading="lazy"><figcaption>Le mode sombre</figcaption></figure>
+</div><p class="note">Les écrans peuvent évoluer légèrement d'une version à l'autre.</p></section>
+
+<section id="questions"><h2>Questions fréquentes</h2>
+<div class="faq">
+<details><summary>TempsRepère est-elle gratuite ?</summary><p>Oui. L'application est gratuite et sans publicité.</p></details>
+<details><summary>Sur quels téléphones ?</summary><p>Sur Android, via Google Play. Il n'y a pas de version iPhone pour l'instant.</p></details>
+<details><summary>Où vont mes données ?</summary><p>Nulle part : elles restent sur votre téléphone. Il n'y a ni compte ni serveur. Vous pouvez les sauvegarder dans un fichier depuis les réglages. Le détail est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p></details>
+<details><summary>Les résultats ont-ils une valeur légale ?</summary><p>Non. TempsRepère est un outil d'aide au suivi de vos horaires. Il ne remplace ni votre employeur ni un avis juridique.</p></details>
+<details><summary>Quand sort l'application ?</summary><p>Bientôt sur Google Play. Cette page sera mise à jour avec le lien dès la sortie.</p></details>
+</div></section>
+</div><footer><div class="wrap"><div class="row"><div><b style="color:var(--fg)">TempsRepère</b> · Vos horaires. Vos repos. Vos repères.</div><div><a href="confidentialite.html">Politique de confidentialité</a></div></div>
+<p>TempsRepère est un outil d'aide au suivi de vos horaires. Il ne remplace ni votre employeur ni un avis juridique.</p></div></footer></body></html>
